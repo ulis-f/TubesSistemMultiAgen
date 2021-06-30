@@ -46,7 +46,7 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
         isiAwalPeminjaman = new javax.swing.JTextField();
         isiAkhirPeminjaman = new javax.swing.JTextField();
         isiStatus = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox();
+        ubahStatusPesanan = new javax.swing.JComboBox();
         totalHarga = new javax.swing.JLabel();
         isiTotalHarga = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -90,10 +90,10 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        ubahStatusPesanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Di kirim ke pelanggan", "Di pelanggan", "Selesai" }));
+        ubahStatusPesanan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                ubahStatusPesananActionPerformed(evt);
             }
         });
 
@@ -150,7 +150,7 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(isiStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ubahStatusPesanan, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(konfirmasiStatus)
                                 .addContainerGap())
@@ -192,7 +192,7 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
                     .addComponent(isiAwalPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(isiAkhirPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(isiStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ubahStatusPesanan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(isiTotalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(187, Short.MAX_VALUE))
         );
@@ -212,9 +212,9 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
         // TODO add your handling code here:
     }//GEN-LAST:event_isiAkhirPeminjamanActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void ubahStatusPesananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahStatusPesananActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_ubahStatusPesananActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,12 +268,12 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
     private javax.swing.JTextField isiNamaPelanggan;
     private javax.swing.JTextField isiStatus;
     private javax.swing.JTextField isiTotalHarga;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel judulNovelMajalah;
     private javax.swing.JButton konfirmasiStatus;
     private javax.swing.JLabel statusPesanan;
     private javax.swing.JLabel totalHarga;
+    private javax.swing.JComboBox ubahStatusPesanan;
     // End of variables declaration//GEN-END:variables
 
     public void setAgent(BookSellerAgent a) {
