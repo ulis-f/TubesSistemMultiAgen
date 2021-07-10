@@ -5,6 +5,10 @@
  */
 package bookTrading.seller;
 
+import jade.gui.TimeChooser;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+
 /**
  *
  * @author Ulis
@@ -12,11 +16,19 @@ package bookTrading.seller;
 public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerGui {
     private BookSellerAgent myAgent;
     
+    private Date tglAwalPeminjaman;
+    private Date tglAkhirPeminjaman;
+    private Set<String> daftarPeminjaman;
+    private Set<String> daftar; //menyimpan hasil setelah status diubah
+    
     /**
      * Creates new form BookSellerGuiImpl
      */
     public BookSellerGuiImpl() {
         initComponents();
+        this.logTA.setEnabled(false);
+        this.daftarPeminjaman = new HashSet<String>();
+        this.daftar = new HashSet<String>();
     }
 
     /**
@@ -28,6 +40,7 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton3 = new javax.swing.JButton();
         NamaPelanggan = new javax.swing.JLabel();
         NamaPelanggan1 = new javax.swing.JLabel();
         judulNovelMajalah = new javax.swing.JLabel();
@@ -35,27 +48,33 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
         HargaPerHari = new javax.swing.JLabel();
         awalPeminjaman = new javax.swing.JLabel();
         awalPeminjaman1 = new javax.swing.JLabel();
-        statusPesanan = new javax.swing.JLabel();
         awalPeminjaman3 = new javax.swing.JLabel();
-        awalPeminjaman4 = new javax.swing.JLabel();
-        konfirmasiStatus = new javax.swing.JButton();
+        AddPeminjaman = new javax.swing.JButton();
         isiJudul = new javax.swing.JTextField();
         isiHargaPerHari = new javax.swing.JTextField();
         isiNamaPelanggan = new javax.swing.JTextField();
         isiAlamat = new javax.swing.JTextField();
         isiAwalPeminjaman = new javax.swing.JTextField();
         isiAkhirPeminjaman = new javax.swing.JTextField();
-        isiStatus = new javax.swing.JTextField();
         ubahStatusPesanan = new javax.swing.JComboBox();
-        totalHarga = new javax.swing.JLabel();
-        isiTotalHarga = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        logTA = new javax.swing.JTextArea();
+        SetAwalPeminjaman = new javax.swing.JButton();
+        SetAkhirPeminjaman = new javax.swing.JButton();
+        Exit = new javax.swing.JButton();
+        Reset = new javax.swing.JButton();
+        cariNama = new javax.swing.JTextField();
+        UbahStatus = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+
+        jButton3.setText("jButton3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         NamaPelanggan.setText("Pelanggan");
 
-        judulNovelMajalah.setText("Judul");
+        judulNovelMajalah.setText("Judul Novel/Majalah");
 
         alamat.setText("Alamat");
 
@@ -65,16 +84,12 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
 
         awalPeminjaman1.setText("Akhir Peminjaman");
 
-        statusPesanan.setText("Status");
-
         awalPeminjaman3.setText("Ubah Status");
 
-        awalPeminjaman4.setText("Konfirmasi?");
-
-        konfirmasiStatus.setText("Submit");
-        konfirmasiStatus.addActionListener(new java.awt.event.ActionListener() {
+        AddPeminjaman.setText("Add");
+        AddPeminjaman.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                konfirmasiStatusActionPerformed(evt);
+                AddPeminjamanActionPerformed(evt);
             }
         });
 
@@ -90,119 +105,185 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
             }
         });
 
-        ubahStatusPesanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Di kirim ke pelanggan", "Di pelanggan", "Selesai" }));
+        ubahStatusPesanan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Diproses", "Di kirim ke pelanggan", "Di pelanggan", "Selesai" }));
         ubahStatusPesanan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ubahStatusPesananActionPerformed(evt);
             }
         });
 
-        totalHarga.setText("Total Harga");
-
         jLabel1.setText("Daftar Peminjaman");
+
+        logTA.setColumns(20);
+        logTA.setRows(5);
+        jScrollPane1.setViewportView(logTA);
+
+        SetAwalPeminjaman.setText("Set");
+        SetAwalPeminjaman.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SetAwalPeminjamanActionPerformed(evt);
+            }
+        });
+
+        SetAkhirPeminjaman.setText("Set");
+        SetAkhirPeminjaman.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SetAkhirPeminjamanActionPerformed(evt);
+            }
+        });
+
+        Exit.setText("Exit");
+        Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitActionPerformed(evt);
+            }
+        });
+
+        Reset.setText("Reset");
+        Reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResetActionPerformed(evt);
+            }
+        });
+
+        UbahStatus.setText("Ubah");
+        UbahStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UbahStatusActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Masukkan Nama");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(NamaPelanggan1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(284, 284, 284))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(isiJudul)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(isiHargaPerHari, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(judulNovelMajalah)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(NamaPelanggan1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                        .addComponent(HargaPerHari)
-                        .addGap(34, 34, 34)))
+                    .addComponent(NamaPelanggan)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(judulNovelMajalah, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(HargaPerHari, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(isiTotalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(isiNamaPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(isiAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(totalHarga)
-                                .addGap(52, 52, 52)
-                                .addComponent(NamaPelanggan)
-                                .addGap(60, 60, 60)
-                                .addComponent(alamat)))
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(isiAwalPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(awalPeminjaman))
-                        .addGap(10, 10, 10)
+                            .addComponent(isiNamaPelanggan)
+                            .addComponent(isiHargaPerHari)
+                            .addComponent(isiJudul))
+                        .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(awalPeminjaman1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(isiAkhirPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(awalPeminjaman1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(alamat)
+                                .addComponent(awalPeminjaman)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(isiStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(isiAwalPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(ubahStatusPesanan, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(konfirmasiStatus)
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(statusPesanan)
-                                .addGap(61, 61, 61)
-                                .addComponent(awalPeminjaman3)
-                                .addGap(63, 63, 63)
-                                .addComponent(awalPeminjaman4)
-                                .addGap(20, 20, 20))))
+                                .addComponent(SetAwalPeminjaman))
+                            .addComponent(isiAlamat)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(isiAkhirPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(SetAkhirPeminjaman, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(163, 163, 163))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(232, 232, 232)
-                        .addComponent(jLabel1))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(cariNama, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ubahStatusPesanan, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(UbahStatus)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(AddPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Reset)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(awalPeminjaman3)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NamaPelanggan1)
+                        .addGap(35, 35, 35)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(isiJudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(judulNovelMajalah)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(alamat)
+                            .addComponent(isiAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(isiHargaPerHari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(HargaPerHari)
+                            .addComponent(awalPeminjaman)
+                            .addComponent(isiAwalPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SetAwalPeminjaman))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(awalPeminjaman1)
+                            .addComponent(isiAkhirPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SetAkhirPeminjaman)
+                            .addComponent(isiNamaPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NamaPelanggan))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NamaPelanggan)
-                    .addComponent(NamaPelanggan1)
-                    .addComponent(alamat)
-                    .addComponent(HargaPerHari)
-                    .addComponent(judulNovelMajalah)
-                    .addComponent(awalPeminjaman)
-                    .addComponent(awalPeminjaman1)
-                    .addComponent(statusPesanan)
                     .addComponent(awalPeminjaman3)
-                    .addComponent(awalPeminjaman4)
-                    .addComponent(totalHarga))
-                .addGap(10, 10, 10)
+                    .addComponent(ubahStatusPesanan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(konfirmasiStatus)
-                    .addComponent(isiJudul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(isiHargaPerHari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(isiNamaPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(isiAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(isiAwalPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(isiAkhirPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(isiStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ubahStatusPesanan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(isiTotalHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(187, Short.MAX_VALUE))
+                    .addComponent(cariNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UbahStatus)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Reset, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AddPeminjaman, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void konfirmasiStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_konfirmasiStatusActionPerformed
+    private void AddPeminjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPeminjamanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_konfirmasiStatusActionPerformed
+        int hargaPerHari = Integer.parseInt(this.isiHargaPerHari.getText());
+        long diff = this.tglAkhirPeminjaman.getTime() - this.tglAwalPeminjaman.getTime();
+        long jumlahHari = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);;
+        int totalHarga = (int) (hargaPerHari*jumlahHari);
+        
+        this.notifyUser(this.isiJudul.getText()+","+hargaPerHari+","+totalHarga+","+this.isiNamaPelanggan.getText()+","+this.isiAlamat.getText()+","+
+                this.tglAwalPeminjaman+","+this.tglAkhirPeminjaman+","+"Di proses");
+        this.daftarPeminjaman.add(this.isiJudul.getText()+","+hargaPerHari+","+totalHarga+","+this.isiNamaPelanggan.getText()+","+this.isiAlamat.getText()+","+
+                this.tglAwalPeminjaman+","+this.tglAkhirPeminjaman+","+"Di proses");
+        
+    }//GEN-LAST:event_AddPeminjamanActionPerformed
 
     private void isiJudulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isiJudulActionPerformed
         // TODO add your handling code here:
@@ -215,6 +296,78 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
     private void ubahStatusPesananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahStatusPesananActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ubahStatusPesananActionPerformed
+
+    private void SetAwalPeminjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetAwalPeminjamanActionPerformed
+        // TODO add your handling code here:
+        Date d = this.tglAwalPeminjaman;
+        if (d == null) {
+            d = new Date();
+        }
+
+        TimeChooser tc = new TimeChooser(d);
+        if (tc.showEditTimeDlg(BookSellerGuiImpl.this) == TimeChooser.OK) {
+            this.tglAwalPeminjaman = tc.getDate();
+            this.isiAwalPeminjaman.setText(this.tglAwalPeminjaman.toString());
+        }
+    }//GEN-LAST:event_SetAwalPeminjamanActionPerformed
+
+    private void SetAkhirPeminjamanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SetAkhirPeminjamanActionPerformed
+        // TODO add your handling code here:
+        Date d = this.tglAkhirPeminjaman;
+        if (d == null) {
+            d = new Date();
+        }
+
+        TimeChooser tc = new TimeChooser(d);
+        if (tc.showEditTimeDlg(BookSellerGuiImpl.this) == TimeChooser.OK) {
+            this.tglAkhirPeminjaman = tc.getDate();
+            this.isiAkhirPeminjaman.setText(this.tglAkhirPeminjaman.toString());
+        }
+    }//GEN-LAST:event_SetAkhirPeminjamanActionPerformed
+
+    private void ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetActionPerformed
+        // TODO add your handling code here:
+        this.isiJudul.setText("");
+        this.isiHargaPerHari.setText("");
+        this.isiAwalPeminjaman.setText("");
+        this.isiAkhirPeminjaman.setText("");
+        this.isiAlamat.setText("");
+        this.isiNamaPelanggan.setText("");
+    }//GEN-LAST:event_ResetActionPerformed
+
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+        // TODO add your handling code here:
+        myAgent.doDelete();
+    }//GEN-LAST:event_ExitActionPerformed
+
+    private void UbahStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahStatusActionPerformed
+        // TODO add your handling code here:
+        //this.isiStatus.setText((String) this.ubahStatusPesanan.getSelectedItem()); 
+        String nama = this.cariNama.getText();
+        // Converting HashSet to Array
+        String[] arrSet = this.daftarPeminjaman.toArray(new String[this.daftarPeminjaman.size()]);
+        String hasil = "";
+        for(int i=0;i<arrSet.length;i++){
+            String[] hasilSplit = arrSet[i].split(",",9);
+            if(nama.equals(hasilSplit[3])){
+               hasilSplit[7] = (String) this.ubahStatusPesanan.getSelectedItem(); 
+                for(int j=0;j<hasilSplit.length;j++){
+                    hasil+=hasilSplit[j]+",";
+                }
+            }
+            else{
+                for(int j=0;j<hasilSplit.length;j++){
+                    hasil+=hasilSplit[j]+",";
+                }
+            }
+            this.daftar.add(hasil);
+        }   
+        this.logTA.setText("");
+        String[] arrSet1 = this.daftar.toArray(new String[this.daftar.size()]);
+        for(int k=0;k<arrSet1.length;k++){
+            this.notifyUser(arrSet1[k]);
+        }   
+    }//GEN-LAST:event_UbahStatusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,7 +397,7 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() { 
             public void run() {
                 new BookSellerGuiImpl().setVisible(true);
             }
@@ -252,27 +405,32 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddPeminjaman;
+    private javax.swing.JButton Exit;
     private javax.swing.JLabel HargaPerHari;
     private javax.swing.JLabel NamaPelanggan;
     private javax.swing.JLabel NamaPelanggan1;
+    private javax.swing.JButton Reset;
+    private javax.swing.JButton SetAkhirPeminjaman;
+    private javax.swing.JButton SetAwalPeminjaman;
+    private javax.swing.JButton UbahStatus;
     private javax.swing.JLabel alamat;
     private javax.swing.JLabel awalPeminjaman;
     private javax.swing.JLabel awalPeminjaman1;
     private javax.swing.JLabel awalPeminjaman3;
-    private javax.swing.JLabel awalPeminjaman4;
+    private javax.swing.JTextField cariNama;
     private javax.swing.JTextField isiAkhirPeminjaman;
     private javax.swing.JTextField isiAlamat;
     private javax.swing.JTextField isiAwalPeminjaman;
     private javax.swing.JTextField isiHargaPerHari;
     private javax.swing.JTextField isiJudul;
     private javax.swing.JTextField isiNamaPelanggan;
-    private javax.swing.JTextField isiStatus;
-    private javax.swing.JTextField isiTotalHarga;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel judulNovelMajalah;
-    private javax.swing.JButton konfirmasiStatus;
-    private javax.swing.JLabel statusPesanan;
-    private javax.swing.JLabel totalHarga;
+    private javax.swing.JTextArea logTA;
     private javax.swing.JComboBox ubahStatusPesanan;
     // End of variables declaration//GEN-END:variables
 
@@ -283,6 +441,6 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
 
     @Override
     public void notifyUser(String message) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        logTA.append(message+"\n");
     }
 }
