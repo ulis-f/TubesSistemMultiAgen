@@ -85,7 +85,6 @@ public class BookSellerAgent extends Agent {
     public void putForSale(String title, int initPrice, int minPrice, Date deadline) {
         addBehaviour(new PriceManager(this, title, initPrice, minPrice, deadline));
     }
-
     private class PriceManager extends TickerBehaviour {
         private String title;
         private int minPrice, currentPrice, initPrice, deltaP;
