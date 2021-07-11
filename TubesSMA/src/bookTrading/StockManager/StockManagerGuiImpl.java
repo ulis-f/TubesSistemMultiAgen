@@ -26,7 +26,7 @@ public class StockManagerGuiImpl extends javax.swing.JFrame implements StockMana
         this.daftarBuku = new HashSet<String>();
         this.daftar = new HashSet<String>();
     }
-
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -51,7 +51,7 @@ public class StockManagerAgent extends Agent {
         catch (FIPAException fe) {
             fe.printStackTrace();
         }
-    }
+    }    
 
     /**
      * Agent clean-up
@@ -94,6 +94,6 @@ public class StockManagerAgent extends Agent {
             else{      
                 block();   
             }
-        }
+        }  
     } 
-}    
+}      
