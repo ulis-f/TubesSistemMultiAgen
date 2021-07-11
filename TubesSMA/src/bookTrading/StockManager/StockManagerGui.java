@@ -7,3 +7,4 @@ public interface StockManagerGui {
     void notifyUser(String message);
     void dispose();
 }   
+  

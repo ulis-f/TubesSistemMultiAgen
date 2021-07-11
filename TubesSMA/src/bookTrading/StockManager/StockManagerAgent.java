@@ -20,7 +20,7 @@ public class StockManagerAgent extends Agent {
 
     // The GUI to interact with the user
     private StockManagerGui myGui;
-
+ 
     /**
      * Agent initializations
     **/
@@ -96,4 +96,4 @@ public class StockManagerAgent extends Agent {
             }
         }
     } 
-}
+}    
