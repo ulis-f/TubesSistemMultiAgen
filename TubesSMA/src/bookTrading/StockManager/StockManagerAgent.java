@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bookTrading.stockManager;
-
+package bookTrading.StockManager;
+ 
 import jade.core.Agent;
 import jade.core.behaviours.*;
 import jade.lang.acl.ACLMessage;
@@ -18,18 +18,18 @@ public class StockManagerAgent extends Agent {
     // The catalogue of books available for sale
     private Map catalogue = new HashMap();
 
-    // The GUI to interact with the user
+    // The GUI to interact with the user    
     private StockManagerGui myGui;
  
-    /**
+    /**   
      * Agent initializations
     **/
     protected void setup() {
         // Printout a welcome message
-        System.out.println("Seller-agent "+getAID().getName()+" is ready.");
+        System.out.println("StockManager-agent "+getAID().getName()+" is ready.");
 
         // Create and show the GUI
-        myGui = new StockManagerGuiImpl();
+        myGui = new StockManagerGuiImpl();   
         myGui.setAgent(this);
         myGui.show();
 
@@ -95,5 +95,5 @@ public class StockManagerAgent extends Agent {
                 block();   
             }
         }  
-    } 
+    }   
 }      

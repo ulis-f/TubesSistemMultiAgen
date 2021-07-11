@@ -29,7 +29,7 @@ public class BookSellerAgent extends Agent {
         System.out.println("Seller-agent "+getAID().getName()+" is ready.");
 
         // Create and show the GUI
-        myGui = (BookSellerGui) new BookSellerGuiImpl();   
+        myGui = (BookSellerGui) new BookSellerGuiImpl();     
         myGui.setAgent(this);
         myGui.show();
 

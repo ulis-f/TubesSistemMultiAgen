@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  *
- * @author Ulis
+ * @author Pedro Vieri, Rieszky Delfiero, Yulius Famas
  */
 public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerGui {
     private BookSellerAgent myAgent;

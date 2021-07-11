@@ -6,7 +6,7 @@
 
 /**
  *
- * @author 
+ * @author Pedro Vieri, Rieszky Delfiero, Yulius Famas
  */
 package bookTrading.seller;
 

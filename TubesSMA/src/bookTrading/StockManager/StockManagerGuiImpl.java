@@ -11,16 +11,16 @@ import java.util.*;
 
 /**
  *
- * @author Pedro Vieri, Rieszky Delfiero, Yulius Famas, 
+ * @author Pedro Vieri, Rieszky Delfiero, Yulius Famas
  */
 public class StockManagerGuiImpl extends javax.swing.JFrame implements StockManagerGui {
-    private StockManagerAgent myAgent;
+    private StockManagerAgent myAgent;   
     private Set<String> daftarBuku;
     private Set<String> daftar; //menyimpan hasil setelah jumlah stock diubah
     /**
      * Creates new form StockManegerGuiImpl
      */
-    public StockManagerGuiImpl() {
+    public StockManagerGuiImpl() {  
         initComponents();
         this.LogTextArea.setEnabled(false);
         this.daftarBuku = new HashSet<String>();
@@ -316,7 +316,7 @@ public class StockManagerGuiImpl extends javax.swing.JFrame implements StockMana
     // End of variables declaration//GEN-END:variables
 
     public void setAgent(StockManagerAgent a) {
-        this.myAgent = a;
+        myAgent = a;
         setTitle(myAgent.getName());
     }
 

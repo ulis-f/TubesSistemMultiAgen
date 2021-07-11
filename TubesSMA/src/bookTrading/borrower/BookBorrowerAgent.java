@@ -6,7 +6,7 @@
 
 /**
  *
- * @author Pedro
+ * @author Pedro Vieri, Rieszky Delfiero, Yulius Famas
  */
 package bookTrading.borrower;
 
@@ -34,7 +34,7 @@ public class BookBorrowerAgent extends Agent {
         }
         
         myGui = new BookBorrowerGuiImpl();
-        myGui.setAgent(this);
+        myGui.setAgent(this);  
         myGui.show();
         
         
