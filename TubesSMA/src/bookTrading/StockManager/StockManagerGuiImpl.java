@@ -11,7 +11,7 @@ import java.util.*;
 
 /**
  *
- * @author Ulis
+ * @author Pedro Vieri, Rieszky Delfiero, Yulius Famas, 
  */
 public class StockManagerGuiImpl extends javax.swing.JFrame implements StockManagerGui {
     private StockManagerAgent myAgent;
