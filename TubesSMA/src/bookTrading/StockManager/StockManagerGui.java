@@ -1,6 +1,6 @@
 package bookTrading.StockManager;
 
-public interface StockManagerGUI {
+public interface StockManagerGui {
     void setAgent(StockManagerAgent a);
     void show();
     void hide();
