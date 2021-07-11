@@ -8,7 +8,7 @@
  *
  * @author Pedro
  */
-package bookLending.borrower;
+package bookTrading.borrower;
 public interface BookBorrowerGui {
     void setAgent(BookBorrowerAgent a);
     void show();
