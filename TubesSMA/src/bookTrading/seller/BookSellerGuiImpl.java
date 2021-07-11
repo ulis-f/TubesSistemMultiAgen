@@ -349,7 +349,7 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
 
     private void UbahStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahStatusActionPerformed
         // TODO add your handling code here:
-        //this.isiStatus.setText((String) this.ubahStatusPesanan.getSelectedItem());
+        //this.isiStatus.setText((String) this.ubahStatusPesanan.getSelectedItem()); 
         this.logTA.setText(" ");
         String nama = this.cariNama.getText();
         // Converting HashSet to Array
@@ -358,7 +358,7 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
         for(int i=0;i<arrSet.length;i++){
             String[] hasilSplit = arrSet[i].split(",",9);
             if(nama.equals(hasilSplit[0])){
-               hasilSplit[7] = (String) this.ubahStatusPesanan.getSelectedItem(); 
+                hasilSplit[7] = (String) this.ubahStatusPesanan.getSelectedItem(); 
                 for(int j=0;j<hasilSplit.length;j++){
                     hasil+=hasilSplit[j]+", ";
                 }

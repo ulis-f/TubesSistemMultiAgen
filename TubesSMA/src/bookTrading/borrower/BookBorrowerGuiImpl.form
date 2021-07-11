@@ -34,7 +34,27 @@
                       <Component id="ButtonKeluar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" alignment="0" min="-2" pref="694" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="LabelAwalPeminjaman" min="-2" max="-2" attributes="0"/>
+                          <Component id="LabelAkhirPeminjaman" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="TextFieldTanggalAwal" pref="334" max="32767" attributes="0"/>
+                          <Component id="TextFieldTanggalAkhir" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="ButtonSetTanggalAwal" min="-2" max="-2" attributes="0"/>
+                          <Component id="ButtonSetTanggalAkhir" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
+                          <Component id="TextFieldAlamat" max="32767" attributes="0"/>
+                      </Group>
                       <Group type="102" attributes="0">
                           <Component id="LabelNamaPeminjam" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
@@ -51,26 +71,7 @@
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="TextFieldAlamat" min="-2" pref="332" max="-2" attributes="0"/>
-                              <Component id="ComboBoxNovelMajalah" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="LabelAwalPeminjaman" min="-2" max="-2" attributes="0"/>
-                          <Component id="LabelAkhirPeminjaman" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="TextFieldTanggalAwal" pref="330" max="32767" attributes="0"/>
-                          <Component id="TextFieldTanggalAkhir" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ButtonSetTanggalAkhir" min="-2" max="-2" attributes="0"/>
-                          <Component id="ButtonSetTanggalAwal" min="-2" max="-2" attributes="0"/>
+                          <Component id="ComboBoxNovelMajalah" min="-2" pref="332" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -178,11 +179,12 @@
     <Component class="javax.swing.JComboBox" name="ComboBoxNovelMajalah">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="5">
+            <StringItem index="0" value="Philosopher&apos;s Stone/3000"/>
+            <StringItem index="1" value="A Passage to India/2000"/>
+            <StringItem index="2" value="Things Fall Apart/2000"/>
+            <StringItem index="3" value="This Old House/4000"/>
+            <StringItem index="4" value="Traditional Home/1000"/>
           </StringArray>
         </Property>
       </Properties>

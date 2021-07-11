@@ -52,7 +52,7 @@ public class BookBorrowerGuiImpl extends JFrame implements BookBorrowerGui {
         TextFieldTanggalAkhir = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TextAreaLogs = new javax.swing.JTextArea();
-        ComboBoxNovelMajalah = new javax.swing.JComboBox<>();
+        ComboBoxNovelMajalah = new javax.swing.JComboBox<String>();
         LabelAwalPeminjaman = new javax.swing.JLabel();
         LabelAkhirPeminjaman = new javax.swing.JLabel();
         TextFieldNama = new javax.swing.JTextField();
@@ -93,7 +93,7 @@ public class BookBorrowerGuiImpl extends JFrame implements BookBorrowerGui {
         TextAreaLogs.setRows(5);
         jScrollPane1.setViewportView(TextAreaLogs);
 
-        ComboBoxNovelMajalah.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboBoxNovelMajalah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Philosopher's Stone/3000", "A Passage to India/2000", "Things Fall Apart/2000", "This Old House/4000", "Traditional Home/1000" }));
         ComboBoxNovelMajalah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxNovelMajalahActionPerformed(evt);
@@ -139,7 +139,22 @@ public class BookBorrowerGuiImpl extends JFrame implements BookBorrowerGui {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ButtonKeluar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LabelAwalPeminjaman)
+                            .addComponent(LabelAkhirPeminjaman))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(TextFieldTanggalAwal, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                            .addComponent(TextFieldTanggalAkhir))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ButtonSetTanggalAwal)
+                            .addComponent(ButtonSetTanggalAkhir)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(127, 127, 127)
+                            .addComponent(TextFieldAlamat))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(LabelNamaPeminjam)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -152,21 +167,7 @@ public class BookBorrowerGuiImpl extends JFrame implements BookBorrowerGui {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(LabelAlamat)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(TextFieldAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ComboBoxNovelMajalah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LabelAwalPeminjaman)
-                            .addComponent(LabelAkhirPeminjaman))
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TextFieldTanggalAwal, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-                            .addComponent(TextFieldTanggalAkhir))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ButtonSetTanggalAkhir)
-                            .addComponent(ButtonSetTanggalAwal))))
+                            .addComponent(ComboBoxNovelMajalah, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -209,14 +210,14 @@ public class BookBorrowerGuiImpl extends JFrame implements BookBorrowerGui {
 
     private void ButtonTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonTambahActionPerformed
         // TODO add your handling code here:
-        int hargaPerHari = Integer.parseInt(this.isiHargaPerHari.getText());
+        String namaHarga = (String) this.ComboBoxNovelMajalah.getSelectedItem();
+        String[] hasilSplit = namaHarga.split("/",2);
+        int hargaPerHari = Integer.parseInt(hasilSplit[1]); //mengambil harga novel/
         long diff = this.tglAkhirPeminjaman.getTime() - this.tglAwalPeminjaman.getTime();
         long jumlahHari = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);;
-        int totalHarga = (int) (hargaPerHari*jumlahHari);
+        int totalHarga = (int) (hargaPerHari*jumlahHari);  
         
-        this.notifyUser(this.TextFieldNama.getText()+","+hargaPerHari+","+totalHarga+","+this.isiNamaPelanggan.getText()+","+this.isiAlamat.getText()+","+
-                this.tglAwalPeminjaman+","+this.tglAkhirPeminjaman+","+"Di proses");
-        this.daftarPeminjaman.add(this.isiJudul.getText()+","+hargaPerHari+","+totalHarga+","+this.isiNamaPelanggan.getText()+","+this.isiAlamat.getText()+","+
+        this.notifyUser(hasilSplit[0]+","+hargaPerHari+","+totalHarga+","+this.TextFieldAlamat.getText()+","+
                 this.tglAwalPeminjaman+","+this.tglAkhirPeminjaman+","+"Di proses");
     }//GEN-LAST:event_ButtonTambahActionPerformed
 
