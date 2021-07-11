@@ -227,7 +227,7 @@ public class StockManagerGuiImpl extends javax.swing.JFrame implements StockMana
             }
             this.daftar.add(hasil);
             hasil = "";
-        }   
+        }     
         
         String[] arrSet1 = this.daftar.toArray(new String[this.daftar.size()]);
         for(int k=0;k<arrSet1.length;k++){
