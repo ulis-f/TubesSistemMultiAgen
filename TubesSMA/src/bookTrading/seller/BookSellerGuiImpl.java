@@ -67,6 +67,7 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
         cariNama = new javax.swing.JTextField();
         UbahStatus = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jButton3.setText("jButton3");
 
@@ -155,6 +156,8 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
 
         jLabel2.setText("Masukkan Nama");
 
+        jLabel3.setText("Format : Nama Pelanggan, Judul Novel/Majalah, Harga/Hari, Total Harga,Alamat, Awal Peminjaman, Akhir Peminjaman, Status Peminjaman ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -200,10 +203,11 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
                         .addGap(163, 163, 163))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cariNama, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ubahStatusPesanan, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(UbahStatus)
+                            .addComponent(ubahStatusPesanan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(cariNama, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(UbahStatus)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -215,8 +219,9 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(awalPeminjaman3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(61, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +254,7 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
                             .addComponent(SetAkhirPeminjaman)
                             .addComponent(isiNamaPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(NamaPelanggan))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(awalPeminjaman3)
                     .addComponent(ubahStatusPesanan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -258,7 +263,9 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
                     .addComponent(cariNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(UbahStatus)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addGap(9, 9, 9)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -278,9 +285,9 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
         long jumlahHari = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);;
         int totalHarga = (int) (hargaPerHari*jumlahHari);
         
-        this.notifyUser(this.isiJudul.getText()+","+hargaPerHari+","+totalHarga+","+this.isiNamaPelanggan.getText()+","+this.isiAlamat.getText()+","+
+        this.notifyUser(this.isiNamaPelanggan.getText()+","+this.isiJudul.getText()+","+hargaPerHari+","+totalHarga+","+this.isiAlamat.getText()+","+
                 this.tglAwalPeminjaman+","+this.tglAkhirPeminjaman+","+"Di proses");
-        this.daftarPeminjaman.add(this.isiJudul.getText()+","+hargaPerHari+","+totalHarga+","+this.isiNamaPelanggan.getText()+","+this.isiAlamat.getText()+","+
+        this.daftarPeminjaman.add(this.isiNamaPelanggan.getText()+","+this.isiJudul.getText()+","+hargaPerHari+","+totalHarga+","+this.isiAlamat.getText()+","+
                 this.tglAwalPeminjaman+","+this.tglAkhirPeminjaman+","+"Di proses");
         
     }//GEN-LAST:event_AddPeminjamanActionPerformed
@@ -342,30 +349,32 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
 
     private void UbahStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahStatusActionPerformed
         // TODO add your handling code here:
-        //this.isiStatus.setText((String) this.ubahStatusPesanan.getSelectedItem()); 
+        //this.isiStatus.setText((String) this.ubahStatusPesanan.getSelectedItem());
+        this.logTA.setText(" ");
         String nama = this.cariNama.getText();
         // Converting HashSet to Array
         String[] arrSet = this.daftarPeminjaman.toArray(new String[this.daftarPeminjaman.size()]);
         String hasil = "";
         for(int i=0;i<arrSet.length;i++){
             String[] hasilSplit = arrSet[i].split(",",9);
-            if(nama.equals(hasilSplit[3])){
+            if(nama.equals(hasilSplit[0])){
                hasilSplit[7] = (String) this.ubahStatusPesanan.getSelectedItem(); 
                 for(int j=0;j<hasilSplit.length;j++){
-                    hasil+=hasilSplit[j]+",";
+                    hasil+=hasilSplit[j]+", ";
                 }
             }
             else{
                 for(int j=0;j<hasilSplit.length;j++){
-                    hasil+=hasilSplit[j]+",";
+                    hasil+=hasilSplit[j]+", ";
                 }
             }
             this.daftar.add(hasil);
+            hasil = "";
         }   
-        this.logTA.setText("");
+        
         String[] arrSet1 = this.daftar.toArray(new String[this.daftar.size()]);
         for(int k=0;k<arrSet1.length;k++){
-            this.notifyUser(arrSet1[k]);
+            this.notifyUser(arrSet1[k]+"\n");
         }   
     }//GEN-LAST:event_UbahStatusActionPerformed
 
@@ -428,6 +437,7 @@ public class BookSellerGuiImpl extends javax.swing.JFrame implements BookSellerG
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel judulNovelMajalah;
     private javax.swing.JTextArea logTA;
