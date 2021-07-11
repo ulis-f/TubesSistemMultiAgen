@@ -29,49 +29,44 @@
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
+                              <Component id="ButtonTambah" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="ButtonReset" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="ButtonKeluar" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="ButtonTambah" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="ButtonReset" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="ButtonKeluar" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LabelAwalPeminjaman" min="-2" max="-2" attributes="0"/>
+                                  <Component id="LabelAkhirPeminjaman" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="TextFieldTanggalAwal" min="-2" pref="334" max="-2" attributes="0"/>
+                                  <Component id="TextFieldTanggalAkhir" min="-2" pref="334" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="ButtonSetTanggalAwal" min="-2" max="-2" attributes="0"/>
+                                  <Component id="ButtonSetTanggalAkhir" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="LabelNovelMajalah" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="LabelAwalPeminjaman" min="-2" max="-2" attributes="0"/>
-                                          <Component id="LabelAkhirPeminjaman" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="TextFieldTanggalAwal" min="-2" pref="334" max="-2" attributes="0"/>
-                                          <Component id="TextFieldTanggalAkhir" min="-2" pref="334" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="ButtonSetTanggalAwal" min="-2" max="-2" attributes="0"/>
-                                          <Component id="ButtonSetTanggalAkhir" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="LabelNovelMajalah" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="LabelNamaPeminjam" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="ComboBoxNovelMajalah" min="-2" pref="332" max="-2" attributes="0"/>
-                                          <Component id="TextFieldNama" min="-2" pref="332" max="-2" attributes="0"/>
-                                          <Component id="TextFieldAlamat" min="-2" pref="334" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="LabelNamaPeminjam" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="ComboBoxNovelMajalah" min="-2" pref="332" max="-2" attributes="0"/>
+                                  <Component id="TextFieldNama" min="-2" pref="332" max="-2" attributes="0"/>
+                                  <Component id="TextFieldAlamat" min="-2" pref="334" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
