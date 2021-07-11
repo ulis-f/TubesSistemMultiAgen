@@ -52,7 +52,7 @@ public class BookBorrowerGuiImpl extends JFrame implements BookBorrowerGui {
         TextFieldTanggalAkhir = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         TextAreaLogs = new javax.swing.JTextArea();
-        ComboBoxNovelMajalah = new javax.swing.JComboBox<String>();
+        ComboBoxNovelMajalah = new javax.swing.JComboBox<>();
         LabelAwalPeminjaman = new javax.swing.JLabel();
         LabelAkhirPeminjaman = new javax.swing.JLabel();
         TextFieldNama = new javax.swing.JTextField();
@@ -60,6 +60,7 @@ public class BookBorrowerGuiImpl extends JFrame implements BookBorrowerGui {
         ButtonReset = new javax.swing.JButton();
         ButtonSetTanggalAwal = new javax.swing.JButton();
         ButtonSetTanggalAkhir = new javax.swing.JButton();
+        LabelFormat = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,7 +94,7 @@ public class BookBorrowerGuiImpl extends JFrame implements BookBorrowerGui {
         TextAreaLogs.setRows(5);
         jScrollPane1.setViewportView(TextAreaLogs);
 
-        ComboBoxNovelMajalah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Philosopher's Stone/3000", "A Passage to India/2000", "Things Fall Apart/2000", "This Old House/4000", "Traditional Home/1000" }));
+        ComboBoxNovelMajalah.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Philosopher's Stone/3000", "A Passage to India/2000", "Things Fall Apart/2000", "This Old House/4000", "Traditional Home/1000" }));
         ComboBoxNovelMajalah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboBoxNovelMajalahActionPerformed(evt);
@@ -125,59 +126,68 @@ public class BookBorrowerGuiImpl extends JFrame implements BookBorrowerGui {
             }
         });
 
+        LabelFormat.setText("Format : Nama Pelanggan, Judul Novel/Majalah, Harga/Hari, Total Harga,Alamat, Awal Peminjaman, Akhir Peminjaman, Status Peminjaman ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ButtonTambah)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ButtonReset)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ButtonKeluar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LabelAwalPeminjaman)
-                            .addComponent(LabelAkhirPeminjaman))
-                        .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TextFieldTanggalAwal, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
-                            .addComponent(TextFieldTanggalAkhir))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ButtonSetTanggalAwal)
-                            .addComponent(ButtonSetTanggalAkhir)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(127, 127, 127)
-                            .addComponent(TextFieldAlamat))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(LabelNamaPeminjam)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(TextFieldNama, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(LabelNovelMajalah)
-                                    .addGap(31, 31, 31))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(LabelAlamat)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(ComboBoxNovelMajalah, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(59, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(ButtonTambah)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ButtonReset)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ButtonKeluar))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(LabelAwalPeminjaman)
+                                            .addComponent(LabelAkhirPeminjaman))
+                                        .addGap(44, 44, 44)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(TextFieldTanggalAwal, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TextFieldTanggalAkhir, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(ButtonSetTanggalAwal)
+                                            .addComponent(ButtonSetTanggalAkhir)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(LabelNovelMajalah)
+                                                .addGap(34, 34, 34))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(LabelNamaPeminjam)
+                                                .addGap(54, 54, 54)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(ComboBoxNovelMajalah, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TextFieldNama, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(TextFieldAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LabelFormat, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 804, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(LabelAlamat)))
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(LabelNovelMajalah)
                     .addComponent(ComboBoxNovelMajalah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextFieldNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelNamaPeminjam))
@@ -195,14 +205,16 @@ public class BookBorrowerGuiImpl extends JFrame implements BookBorrowerGui {
                     .addComponent(TextFieldTanggalAkhir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelAkhirPeminjaman)
                     .addComponent(ButtonSetTanggalAkhir))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LabelFormat, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonKeluar)
                     .addComponent(ButtonTambah)
                     .addComponent(ButtonReset))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -312,7 +324,7 @@ public class BookBorrowerGuiImpl extends JFrame implements BookBorrowerGui {
     
     @Override
     public void notifyUser(String message) {
-        //
+        this.TextAreaLogs.append(message+"\n");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -325,6 +337,7 @@ public class BookBorrowerGuiImpl extends JFrame implements BookBorrowerGui {
     private javax.swing.JLabel LabelAkhirPeminjaman;
     private javax.swing.JLabel LabelAlamat;
     private javax.swing.JLabel LabelAwalPeminjaman;
+    private javax.swing.JLabel LabelFormat;
     private javax.swing.JLabel LabelNamaPeminjam;
     private javax.swing.JLabel LabelNovelMajalah;
     private javax.swing.JTextArea TextAreaLogs;
